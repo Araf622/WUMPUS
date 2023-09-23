@@ -1,0 +1,163 @@
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  color:#000000;
+  margin-left: 550px;
+
+
+}
+.table-bordered {
+  background-color: black;
+  justify-content: center;
+  margin-left: 380px;
+  margin-right: 30px;
+}
+
+/* Style the table cells (td) to have a specific height and width */
+.table-bordered td {
+  width: 40px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+  border: 2px solid #fffb00;
+  border-spacing: 0;
+}
+/* InfoDisplay.css */
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 400px;
+  /* margin: 0 auto; */
+  margin-left: 800px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.gold-icon {
+  color: gold;
+  margin-right: 5px;
+}
+
+.gold-text {
+  color: gold;
+  font-weight: bold;
+}
+
+.both-icon {
+  color: violet;
+  margin-right: 5px;
+}
+
+.both-text {
+  color: violet;
+  font-weight: bold;
+}
+
+.stench-icon {
+  color: rgb(41, 197, 2);
+  margin-right: 5px;
+}
+
+.stench-text {
+  color: rgb(41, 197, 2);
+  font-weight: bold;
+}
+
+.breeze-icon {
+  width: 20px;
+  height: 20px;
+  background-color: skyblue;
+  margin-right: 5px;
+}
+
+.breeze-text {
+  color: skyblue;
+  font-weight: bold;
+}
+
+.button-container{
+  margin-top: 400px;
+}
+.move-btn{
+  margin-right: 10px;
+  background-color: #000000;
+  color: #fffb00;
+}
+.restart-btn{
+  background-color: #000000;
+  color: #fffb00;
+}
+
+/* agent icon */
+.agent-cell {
+  background-color: yellow; /* Change the background color to yellow for the agent's cell */
+  border: 2px solid black; /* Add a border around the agent's cell */
+  color: black; /* Change the text color to black */
+  font-weight: bold; /* Make the text bold for the agent's cell */
+}
+
+.green {
+  background-color: rgb(41, 197, 2); /* Change the background color to yellow for the agent's cell */
+  border: 2px solid black; /* Add a border around the agent's cell */
+  color: black; /* Change the text color to black */
+  font-weight: bold; /* Make the text bold for the agent's cell */
+}
+.skyblue {
+  background-color: skyblue; /* Change the background color to yellow for the agent's cell */
+  border: 2px solid black; /* Add a border around the agent's cell */
+  color: black; /* Change the text color to black */
+  font-weight: bold; /* Make the text bold for the agent's cell */
+}
+.golden {
+  background-color: gold; /* Change the background color to yellow for the agent's cell */
+  border: 2px solid black; /* Add a border around the agent's cell */
+  color: black; /* Change the text color to black */
+  font-weight: bold; /* Make the text bold for the agent's cell */
+}
+
+.violet {
+  background-color: rgb(190, 71, 190); /* Change the background color to yellow for the agent's cell */
+  border: 2px solid black; /* Add a border around the agent's cell */
+  color: black; /* Change the text color to black */
+  font-weight: bold; /* Make the text bold for the agent's cell */
+}
+
+.Turquoise {
+  background-color: rgb(19, 165, 150); /* Change the background color to yellow for the agent's cell */
+  border: 2px solid black; /* Add a border around the agent's cell */
+  color: black; /* Change the text color to black */
+  font-weight: bold; /* Make the text bold for the agent's cell */
+}
+
+.olive {
+  background-color: olive; /* Change the background color to yellow for the agent's cell */
+  border: 2px solid black; /* Add a border around the agent's cell */
+  color: black; /* Change the text color to black */
+  font-weight: bold; /* Make the text bold for the agent's cell */
+}
+
+.pink {
+  background-color: pink; /* Change the background color to yellow for the agent's cell */
+  border: 2px solid black; /* Add a border around the agent's cell */
+  color: black; /* Change the text color to black */
+  font-weight: bold; /* Make the text bold for the agent's cell */
+}
+
+.agent-icon {
+  color: blue; /* Change the color of the agent character/icon */
+  font-size: 24px; /* Adjust the font size as needed */
+ }
+/* .agent-icon{
+  color: white;
+} */ 
