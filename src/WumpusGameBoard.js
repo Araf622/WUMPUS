@@ -4,6 +4,7 @@ import { Table, Button } from 'react-bootstrap';
 import './WumpusGameBoard.css'; // Import your CSS file
 import { FaBolt, FaSkull, FaCoins, FaUser } from 'react-icons/fa';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import axios from 'axios';
 
 const WumpusGameBoard = () => {
@@ -22,7 +23,16 @@ const WumpusGameBoard = () => {
   const [agentPosition, setAgentPosition] = useState({ x: 0, y: 0 });
   const [isMoving, setIsMoving] = useState(false);
   const [visitedCells, setVisitedCells] = useState([]); // Track visited cells
+  const [gameOver, setGameOver] = useState(false)
 
+  // setVisitedCells([...visitedCells, {x:0,y:0}]);
+
+  useEffect(() => {    
+    
+      setVisitedCells([...visitedCells, {x:0,y:0}]);
+  }, []);
+
+  
   const setCellValue = (rowIndex, colIndex, value) => {
     // Create a copy of the current board
     const newBoard = [...board];
@@ -67,6 +77,7 @@ const WumpusGameBoard = () => {
     //     setIsMoving(false); // Set isMoving back to false after the agent's movement
     //   }, 10); // Adjust the duration as needed
     // }
+
     axios.post("http://localhost:5000/findBestMove", {
 
     }).then((response) => {
@@ -77,7 +88,7 @@ const WumpusGameBoard = () => {
         //       return;
         //     }
 
-        // const newX = agentPosition.x + 1;
+        // const newX = agentPosition.x + 1;newY
         const moves = response.data.move
         console.log("x:" , moves[0], "\ty=", moves[1])
 
@@ -85,18 +96,30 @@ const WumpusGameBoard = () => {
         let newX = moves[0];
         let newY = moves[1];
 
-            setIsMoving(true);
-            agentPosition.x= newY;
-            agentPosition.y= newX;
-            setVisitedCells([...visitedCells, agentPosition]);
-            // console.log("x: " + newX + " y: " + newY);
-            console.log("agent position: " + newX + " "+ newY)
+        setIsMoving(true);
+        agentPosition.x= newX;
+        agentPosition.y= newY;
+        setVisitedCells([...visitedCells, agentPosition]);
+        // console.log("x: " + newX + " y: " + newY);
+        console.log("agent position: " + agentPosition.x + " "+ agentPosition.y)
 
-            setTimeout(() => {
-              setAgentPosition({ x: agentPosition.x, y: agentPosition.y });
+        setTimeout(() => {
+          setAgentPosition({ x: agentPosition.x, y: agentPosition.y });
 
-            setIsMoving(false); // Set isMoving back to false after the agent's movement
-            },100); // Adjust the duration as needed
+        setIsMoving(false); // Set isMoving back to false after the agent's movement
+        },100); // Adjust the duration as needed
+        
+        /*------GAME OVER LOGIC------*/
+        console.log("current box: ", board[newX][newY])
+        if(board[newX][newY] === "W"){
+          setGameOver(true)
+          console.log("You were eaten by wumpus");
+        }
+        else if(board[newX][newY] === "P"){
+          setGameOver(true)
+          console.log("You fell into a pit");
+        }
+
 
         // let newX = agentPosition.x;
         // let newY = agentPosition.y;
@@ -151,6 +174,9 @@ const WumpusGameBoard = () => {
     setAgentPosition({ x: 0, y: 0 });
     navigate('/');
   };
+  const closeModal = () => {
+    setGameOver(false);
+  };
 
   return (
     <>
@@ -160,24 +186,24 @@ const WumpusGameBoard = () => {
         <div style={{ float: 'left' }}>
           <Table className="table-bordered">
             <tbody>
-              {board.map((row, rowIndex) => (
+              { board.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {row.map((cell, colIndex) => (
                     <td
                       key={colIndex}
                       className={
-                        rowIndex === agentPosition.y && colIndex === agentPosition.x
+                        rowIndex === agentPosition.x && colIndex === agentPosition.y
                           ? getCellColor(board, colIndex, rowIndex)
                           : visitedCells.some(
                             (visitedCell) =>
-                              visitedCell.x === colIndex && visitedCell.y === rowIndex
+                              visitedCell.y === colIndex && visitedCell.x === rowIndex
                           )
                             ? getCellColor(board, colIndex, rowIndex)
                             : cell
                       }
                     >
 
-                      {rowIndex === agentPosition.y && colIndex === agentPosition.x && !isMoving && (
+                      {rowIndex === agentPosition.x && colIndex === agentPosition.y && !isMoving && (
                         <FaUser className="agent-icon" />
                       )}
                     </td>
@@ -192,6 +218,21 @@ const WumpusGameBoard = () => {
           <div className="info-item">
             <FaCoins className="gold-icon" />
             <span className="gold-text">Gold</span>
+          </div>
+
+          <div className="info-item">
+            <FaCoins className="GS-icon" />
+            <span className="GS-text">Gold+Stench</span>
+          </div>
+
+          <div className="info-item">
+            <FaCoins className="GB-icon" />
+            <span className="GB-text">Gold+Breeze</span>
+          </div>
+
+          <div className="info-item">
+            <FaCoins className="GBS-icon" />
+            <span className="GBS-text">Gold+Breeze+Stench</span>
           </div>
 
           <div className="info-item">
@@ -210,8 +251,11 @@ const WumpusGameBoard = () => {
           </div>
 
 
+
+
         </div>
-        <div className="button-container">
+
+        {!gameOver &&(<div className="button-container">
           <Button className='move-btn' variant="primary" onClick={handleMoveClick}>
             Move
           </Button>
@@ -221,8 +265,24 @@ const WumpusGameBoard = () => {
           <Button className='restart-btn' variant="danger" onClick={handleRestartClick}>
             Restart Game
           </Button>
-        </div>
+        </div>)}
       </div>
+
+      {gameOver && (
+        <div className="modal">
+          <div className="modal-content" style={{display:'flex', flexDirection:'column',}}>
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <h1 >Game Over Biatch</h1>
+            <Button className='restart-btn' variant="danger" onClick={handleRestartClick} style={{width:'20%'}}>
+            Restart Game
+          </Button>
+          </div>
+        </div>
+      )}
+
+
 
     </>
   );

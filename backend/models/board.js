@@ -452,7 +452,7 @@ class Board {
                             this.grid[i - 1][j] === "B" ||
                             this.grid[i - 1][j] === "GB"
                         ) {
-                            this.grid[i - 1][j] += "B";
+                            this.grid[i - 1][j] += "S";
                         }
                     }
 
@@ -611,6 +611,7 @@ class Board {
         }
     }
     findBestMove() {
+        let arrow = 1;
 
         console.log("FindBestMove called");
         this.display();

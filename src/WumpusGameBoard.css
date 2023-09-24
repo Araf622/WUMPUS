@@ -34,7 +34,7 @@ h2 {
   background-color: #f7f7f7;
   border: 1px solid #ccc;
   border-radius: 5px;
-  max-width: 400px;
+  max-width: 800px;
   /* margin: 0 auto; */
   margin-left: 800px;
 }
@@ -81,10 +81,44 @@ h2 {
   margin-right: 5px;
 }
 
+.GB-icon {
+  background-color: rgb(202, 138, 20);
+  margin-right: 5px;
+}
+
+.GS-icon {
+  background-color: olive;
+  margin-right: 5px;
+}
+
+.GBS-icon {
+  background-color: pink;
+  margin-right: 5px;
+}
+
 .breeze-text {
   color: skyblue;
   font-weight: bold;
 }
+
+.GB-text {
+  color:rgb(202, 138, 20); /* Change the background color to yellow for the agent's cell */
+  ;
+  font-weight: bold;
+}
+
+
+.GS-text {
+  color: olive;
+  font-weight: bold;
+}
+
+
+.GBS-text {
+  color: pink;
+  font-weight: bold;
+}
+
 
 .button-container{
   margin-top: 400px;
@@ -134,7 +168,7 @@ h2 {
 }
 
 .Turquoise {
-  background-color: rgb(19, 165, 150); /* Change the background color to yellow for the agent's cell */
+  background-color: rgb(202, 138, 20); /* Change the background color to yellow for the agent's cell */
   border: 2px solid black; /* Add a border around the agent's cell */
   color: black; /* Change the text color to black */
   font-weight: bold; /* Make the text bold for the agent's cell */
@@ -158,6 +192,3 @@ h2 {
   color: blue; /* Change the color of the agent character/icon */
   font-size: 24px; /* Adjust the font size as needed */
  }
-/* .agent-icon{
-  color: white;
-} */ 
