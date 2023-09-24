@@ -82,7 +82,7 @@ function WumpusSetup() {
     useEffect(() => {
 
       if (isBoardLoaded) {
-        navigate('/WumpusGameBoard', { state: { Board } });
+        navigate('/WumpusGameBoard', { state: { Board,numGolds } });
       }
   
     }, [Board, isBoardLoaded, navigate]);
