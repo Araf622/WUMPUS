@@ -71,6 +71,7 @@ app.route('/setBoardData').post( async(req, res) => {
     console.log("Here to find best move");
     // board.display()
     move = board.findBestMove();
+    console.log("move: " + move)
 
     return res.json({move: move});
     // return res.json({"msg": "move"});

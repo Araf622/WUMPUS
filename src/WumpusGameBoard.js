@@ -94,79 +94,80 @@ const WumpusGameBoard = () => {
 
         // const newX = agentPosition.x + 1;newY
         const moves = response.data.move
-        console.log("x:", moves[0], "\ty=", moves[1])
+        console.log("move: ",moves)
+        // console.log("x:", moves[0], "\ty=", moves[1])
 
 
-        let newX = moves[0];
-        let newY = moves[1];
+        // let newX = moves[0];
+        // let newY = moves[1];
 
-        setIsMoving(true);
-        agentPosition.x = newX;
-        agentPosition.y = newY;
-        setVisitedCells([...visitedCells, agentPosition]);
-        // console.log("x: " + newX + " y: " + newY);
-        console.log("agent position: " + agentPosition.x + " " + agentPosition.y)
+        // setIsMoving(true);
+        // agentPosition.x = newX;
+        // agentPosition.y = newY;
+        // setVisitedCells([...visitedCells, agentPosition]);
+        // // console.log("x: " + newX + " y: " + newY);
+        // console.log("agent position: " + agentPosition.x + " " + agentPosition.y)
 
-        setTimeout(() => {
-          setAgentPosition({ x: agentPosition.x, y: agentPosition.y });
+        // setTimeout(() => {
+        //   setAgentPosition({ x: agentPosition.x, y: agentPosition.y });
 
-          setIsMoving(false); // Set isMoving back to false after the agent's movement
-        }, 100); // Adjust the duration as needed
+        //   setIsMoving(false); // Set isMoving back to false after the agent's movement
+        // }, 100); // Adjust the duration as needed
 
         /*------GAME OVER LOGIC------*/
-        console.log("current box: ", board[newX][newY])
-        if (board[newX][newY] === "W") {
-          setGameOver(true)
-          console.log("You were eaten by wumpus");
-        }
-        else if (board[newX][newY] === "P") {
-          setGameOver(true)
-          console.log("You fell into a pit");
-        }
-
-        else if (board[newX][newY] === "G" || board[newX][newY] === "GS" || board[newX][newY] === "GB" || board[newX][newY] === "GBS") {
-          setScore(score+10)
-          setGold(gold-1)
-          // setGameOver(true)
-          // console.log("You fell into a pit");
-        }
-
-
-        // let newX = agentPosition.x;
-        // let newY = agentPosition.y;
-
-        // for (const move of moves) {
-        //   if (move == "R") {
-        //     newX = newX + 1;
-        //   }
-        //   else if (move == "L") {
-        //     newX = newX- 1;
-        //   }
-        //   else if (move == "U") {
-        //     newY = newY- 1;
-        //   }
-        //   else if (move == "D") {
-        //     newY = newY+ 1;
-        //   }
-
-        //   if (newX < 10 && newY <10) {
-        //     console.log("moving agent position");
-
-        //     setIsMoving(true);
-        //     agentPosition.x= newX;
-        //     agentPosition.y= newY;
-        //     setVisitedCells([...visitedCells, agentPosition]);
-        //     // console.log("x: " + newX + " y: " + newY);
-        //     console.log("agent position: " + newX + " "+ newY)
-
-        //     setTimeout(() => {
-        //       setAgentPosition({ x: agentPosition.x, y: agentPosition.y });
-
-        //     setIsMoving(false); // Set isMoving back to false after the agent's movement
-        //     },2000); // Adjust the duration as needed
-        //   }
-        //   // console.log("making move : " ,move); // This will print each character in the string
+        // console.log("current box: ", board[newX][newY])
+        // if (board[newX][newY] === "W") {
+        //   setGameOver(true)
+        //   console.log("You were eaten by wumpus");
         // }
+        // else if (board[newX][newY] === "P") {
+        //   setGameOver(true)
+        //   console.log("You fell into a pit");
+        // }
+
+        // else if (board[newX][newY] === "G" || board[newX][newY] === "GS" || board[newX][newY] === "GB" || board[newX][newY] === "GBS") {
+        //   setScore(score+10)
+        //   setGold(gold-1)
+        //   // setGameOver(true)
+        //   // console.log("You fell into a pit");
+        // }
+
+
+        let newX = agentPosition.x;
+        let newY = agentPosition.y;
+
+        for (const move of moves) {
+          if (move == "R") {
+            newX = newX + 1;
+          }
+          else if (move == "L") {
+            newX = newX- 1;
+          }
+          else if (move == "U") {
+            newY = newY- 1;
+          }
+          else if (move == "D") {
+            newY = newY+ 1;
+          }
+
+          if (newX < 10 && newY <10) {
+            console.log("moving agent position");
+
+            setIsMoving(true);
+            agentPosition.x= newX;
+            agentPosition.y= newY;
+            setVisitedCells([...visitedCells, agentPosition]);
+            // console.log("x: " + newX + " y: " + newY);
+            console.log("agent position: " + newX + " "+ newY)
+
+            setTimeout(() => {
+              setAgentPosition({ x: agentPosition.x, y: agentPosition.y });
+
+            setIsMoving(false); // Set isMoving back to false after the agent's movement
+            },2000); // Adjust the duration as needed
+          }
+          // console.log("making move : " ,move); // This will print each character in the string
+        }
 
 
 
